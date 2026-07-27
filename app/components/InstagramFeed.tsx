@@ -75,7 +75,7 @@ export default async function InstagramFeed({
   if (!posts.length) return null;
 
   return (
-    <section id="our-work" className={className}>
+    <section className={className}>
       <div className={containerClass}>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>

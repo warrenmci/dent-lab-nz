@@ -1,6 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import { QuoteForm } from "./components/QuoteForm";
 import InstagramFeed from "./components/InstagramFeed";
+import logo from "../assets/dentlabnz_logo_landscape.png";
+import featureBefore from "../assets/feature_dent_before.jpg";
+import featureAfter from "../assets/feature_dent_after.jpg";
 
 const SECTION = "mx-auto w-full max-w-5xl px-6 sm:px-8 lg:px-10 xl:max-w-6xl";
 
@@ -9,25 +13,21 @@ const SERVICES = [
     title: "Door Dings & Parking Dents",
     desc: "The most common vehicle damage — caused by car doors, shopping trolleys, or tight car parks. We restore the panel to factory condition without touching the paint.",
     detail: "Most repairs completed in under 2 hours",
-    dark: false,
-  },
-  {
-    title: "Hail Damage Repair",
-    desc: "A hailstorm can leave dozens of dents across every panel. Our technicians work methodically panel by panel, bringing your vehicle back to pre-storm condition.",
-    detail: "Insurance claims supported",
-    dark: true,
   },
   {
     title: "Crease & Sharp Dent Repair",
     desc: "More complex damage with a defined edge or crease requires specialist technique. We assess each dent individually and advise honestly on what PDR can achieve.",
     detail: "Free assessment on complex repairs",
-    dark: false,
+  },
+  {
+    title: "Hail Damage Repair",
+    desc: "A hailstorm can leave dozens of dents across every panel. Our technicians work methodically panel by panel, bringing your vehicle back to pre-storm condition.",
+    detail: "Insurance claims supported",
   },
   {
     title: "Fleet & Dealership PDR",
     desc: "We work with car dealerships and fleet operators to keep vehicles looking their best. Competitive volume pricing and flexible scheduling to suit your operation.",
     detail: "Volume pricing available",
-    dark: false,
   },
 ];
 
@@ -128,30 +128,16 @@ export default function Home() {
 
       {/* ── Nav ─────────────────────────────────────────────── */}
       <nav className="sticky top-0 z-50 border-b border-white/8 bg-[#111111]/90 backdrop-blur">
-        <div
-          className={`${SECTION} flex items-center justify-between py-4`}
-        >
-          <Link href="/" className="flex items-center gap-2.5">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--accent)]">
-              <svg
-                viewBox="0 0 24 24"
-                className="h-5 w-5 fill-black"
-                aria-hidden="true"
-              >
-                <path d="M3 6h18v2H3V6zm3 5h12v2H6v-2zm3 5h6v2H9v-2z" />
-              </svg>
-            </span>
-            <span className="text-sm font-bold tracking-tight text-white">
-              DentLab<span className="text-[var(--accent)]">NZ</span>
-            </span>
+        <div className={`${SECTION} flex items-center justify-between py-4`}>
+          <Link href="/" className="flex items-center">
+            <Image
+              src={logo}
+              alt="DentLabNZ"
+              className="h-20 w-auto sm:h-24"
+              priority
+            />
           </Link>
           <div className="hidden items-center gap-6 sm:flex">
-            <a
-              href="#our-work"
-              className="text-xs font-medium uppercase tracking-[0.18em] text-white/60 transition hover:text-white"
-            >
-              Our work
-            </a>
             <a
               href="#services"
               className="text-xs font-medium uppercase tracking-[0.18em] text-white/60 transition hover:text-white"
@@ -169,6 +155,12 @@ export default function Home() {
               className="text-xs font-medium uppercase tracking-[0.18em] text-white/60 transition hover:text-white"
             >
               FAQ
+            </a>
+            <a
+              href="#our-work"
+              className="text-xs font-medium uppercase tracking-[0.18em] text-white/60 transition hover:text-white"
+            >
+              Our work
             </a>
             <a
               href="#contact"
@@ -215,9 +207,9 @@ export default function Home() {
                   </span>
                 </h1>
                 <p className="max-w-lg text-balance text-sm sm:text-base text-white/60">
-                  DentLab NZ restores your vehicle&apos;s panels to factory condition
-                  using expert paintless dent removal — faster, cheaper, and
-                  better for your car&apos;s resale value.
+                  DentLab NZ restores your vehicle&apos;s panels to factory
+                  condition using expert paintless dent removal — faster,
+                  cheaper, and better for your car&apos;s resale value.
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-3 pt-1">
@@ -258,6 +250,7 @@ export default function Home() {
             </div>
 
             {/* Hero card */}
+            {/*
             <div className="relative">
               <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[var(--accent)]/10 via-transparent to-transparent blur-2xl" />
               <div className="rounded-2xl border border-white/10 bg-[#1a1a1a] p-6 shadow-2xl">
@@ -295,6 +288,47 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            */}
+
+            {/* Hero card — before/after */}
+            <div className="relative">
+              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[var(--accent)]/10 via-transparent to-transparent blur-2xl" />
+              <div className="rounded-2xl border border-white/10 bg-[#1a1a1a] p-6 shadow-2xl">
+                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-[var(--accent)]/70">
+                  Before &amp; after
+                </p>
+                <div className="mt-4 grid grid-cols-2 gap-3">
+                  <div className="space-y-2">
+                    <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-white/4">
+                      <Image
+                        src={featureBefore}
+                        alt="Panel with dent before paintless dent removal"
+                        fill
+                        className="object-cover"
+                        sizes="(min-width: 1024px) 20vw, 45vw"
+                      />
+                    </div>
+                    <p className="text-center text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-white/40">
+                      Before
+                    </p>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-white/4">
+                      <Image
+                        src={featureAfter}
+                        alt="Same panel after paintless dent removal, factory finish restored"
+                        fill
+                        className="object-cover"
+                        sizes="(min-width: 1024px) 20vw, 45vw"
+                      />
+                    </div>
+                    <p className="text-center text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
+                      After
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -306,8 +340,38 @@ export default function Home() {
         containerClass={`${SECTION} py-16 sm:py-18 lg:py-20`}
       />
 
+      {/* ── Coverage ────────────────────────────────────────── */}
+      <section className="border-b border-white/8 bg-[#0f0f0f]">
+        <div className={`${SECTION} py-12 sm:py-14`}>
+          <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <div className="space-y-2">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--accent)]">
+                Coverage
+              </p>
+              <h2 className="text-xl font-bold tracking-tight sm:text-2xl">
+                Serving Bay of Plenty &amp; Waikato
+              </h2>
+              <p className="max-w-md text-sm text-white/50">
+                Mobile service available. We travel to your home, workplace, or
+                dealership — contact us to confirm availability in your area.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {["Bay of Plenty", "Waikato"].map((city) => (
+                <span
+                  key={city}
+                  className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[0.65rem] font-medium text-white/60"
+                >
+                  {city}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Services ────────────────────────────────────────── */}
-      <section id="services" className="border-b border-white/8">
+      <section id="services" className="scroll-mt-28 border-b border-white/8 sm:scroll-mt-32">
         <div className={`${SECTION} py-16 sm:py-18 lg:py-20`}>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -319,7 +383,8 @@ export default function Home() {
               </h2>
             </div>
             <p className="max-w-xs text-xs text-white/45 sm:text-right">
-              Not sure which service you need? Send us a photo and we&apos;ll advise.
+              Not sure which service you need? Send us a photo and we&apos;ll
+              advise.
             </p>
           </div>
 
@@ -327,29 +392,33 @@ export default function Home() {
             {SERVICES.map((s) => (
               <article
                 key={s.title}
-                className={`flex flex-col justify-between rounded-2xl p-5 ${
-                  s.dark
-                    ? "bg-[var(--accent)] text-black"
-                    : "border border-white/10 bg-[#1a1a1a] text-white"
-                }`}
+                className="flex flex-col justify-between rounded-2xl bg-[var(--accent)] p-5 text-black"
               >
                 <div className="space-y-2">
-                  <h3
-                    className={`text-sm font-bold ${s.dark ? "text-black" : "text-white"}`}
-                  >
-                    {s.title}
-                  </h3>
-                  <p
-                    className={`text-xs leading-relaxed ${s.dark ? "text-black/70" : "text-white/50"}`}
-                  >
+                  <h3 className="text-sm font-bold text-black">{s.title}</h3>
+                  <p className="text-xs leading-relaxed text-black/70">
                     {s.desc}
                   </p>
+                  <div className="mt-3 flex aspect-[4/3] items-center justify-center rounded-lg border border-dashed border-black/20 bg-black/5">
+                    <div className="flex flex-col items-center gap-1 text-black/40">
+                      <svg
+                        className="h-6 w-6"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                      >
+                        <rect x="3" y="4" width="18" height="16" rx="2" />
+                        <circle cx="8.5" cy="9.5" r="1.5" />
+                        <path d="M21 16l-5-5-4 4-3-3-6 6" />
+                      </svg>
+                      <span className="text-[0.6rem] font-medium uppercase tracking-[0.15em]">
+                        Placeholder
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                <p
-                  className={`mt-5 text-[0.65rem] font-semibold uppercase tracking-[0.2em] ${
-                    s.dark ? "text-black/60" : "text-[var(--accent)]"
-                  }`}
-                >
+                <p className="mt-5 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-black/60">
                   {s.detail}
                 </p>
               </article>
@@ -359,7 +428,10 @@ export default function Home() {
       </section>
 
       {/* ── Why PDR ─────────────────────────────────────────── */}
-      <section id="why-pdr" className="border-b border-white/8 bg-[#0f0f0f]">
+      <section
+        id="why-pdr"
+        className="scroll-mt-28 border-b border-white/8 bg-[#0f0f0f] sm:scroll-mt-32"
+      >
         <div className={`${SECTION} py-16 sm:py-18 lg:py-20`}>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
             <div className="space-y-4">
@@ -391,9 +463,13 @@ export default function Home() {
                 >
                   <div className="mb-2 flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-                    <p className="text-xs font-semibold text-white">{b.label}</p>
+                    <p className="text-xs font-semibold text-white">
+                      {b.label}
+                    </p>
                   </div>
-                  <p className="text-xs leading-relaxed text-white/45">{b.body}</p>
+                  <p className="text-xs leading-relaxed text-white/45">
+                    {b.body}
+                  </p>
                 </div>
               ))}
             </div>
@@ -436,47 +512,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Coverage ────────────────────────────────────────── */}
-      <section className="border-b border-white/8 bg-[#0f0f0f]">
-        <div className={`${SECTION} py-12 sm:py-14`}>
-          <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
-            <div className="space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--accent)]">
-                Coverage
-              </p>
-              <h2 className="text-xl font-bold tracking-tight sm:text-2xl">
-                Serving New Zealand
-              </h2>
-              <p className="max-w-md text-sm text-white/50">
-                Mobile service available. We travel to your home, workplace, or
-                dealership — contact us to confirm availability in your area.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {[
-                "Auckland",
-                "Hamilton",
-                "Tauranga",
-                "Wellington",
-                "Christchurch",
-                "Waikato",
-                "Bay of Plenty",
-                "Other regions",
-              ].map((city) => (
-                <span
-                  key={city}
-                  className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[0.65rem] font-medium text-white/60"
-                >
-                  {city}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ── FAQ ─────────────────────────────────────────────── */}
-      <section id="faq" className="border-b border-white/8">
+      <section id="faq" className="scroll-mt-28 border-b border-white/8 sm:scroll-mt-32">
         <div className={`${SECTION} py-16 sm:py-18`}>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
             <div className="space-y-3">
@@ -508,8 +545,85 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Gallery (Instagram placeholder) ──────────────────── */}
+      <section id="our-work" className="scroll-mt-28 border-b border-white/8 sm:scroll-mt-32">
+        <div className={`${SECTION} py-16 sm:py-18 lg:py-20`}>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--accent)]">
+                Gallery
+              </p>
+              <h2 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
+                More from Instagram.
+              </h2>
+            </div>
+            <p className="max-w-xs text-xs text-white/45 sm:text-right">
+              Real repairs on real vehicles — straight from our Instagram,
+              updated as we work.
+            </p>
+          </div>
+
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div
+                key={i}
+                className="flex aspect-square items-center justify-center rounded-xl border border-dashed border-white/15 bg-[#1a1a1a]"
+              >
+                <div className="flex flex-col items-center gap-1 text-white/25">
+                  <svg
+                    className="h-6 w-6"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  >
+                    <rect x="3" y="4" width="18" height="16" rx="2" />
+                    <circle cx="8.5" cy="9.5" r="1.5" />
+                    <path d="M21 16l-5-5-4 4-3-3-6 6" />
+                  </svg>
+                  <span className="text-[0.6rem] font-medium uppercase tracking-[0.15em]">
+                    Placeholder
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 flex justify-center">
+            <a
+              href="https://www.instagram.com/dentlabnz"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-white/80 transition hover:border-[var(--accent)]/40 hover:bg-white/10 hover:text-white"
+              aria-label="Follow DentLab NZ on Instagram"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+              </svg>
+              More work on Instagram
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* ── Contact ─────────────────────────────────────────── */}
-      <section id="contact" className="border-b border-white/8 bg-[#0f0f0f]">
+      <section
+        id="contact"
+        className="scroll-mt-28 border-b border-white/8 bg-[#0f0f0f] sm:scroll-mt-32"
+      >
         <div className={`${SECTION} py-16 sm:py-18 lg:py-20`}>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
             <div className="space-y-5">
@@ -567,7 +681,7 @@ export default function Home() {
                       href="tel:+6400000000"
                       className="text-sm text-white/70 transition hover:text-white"
                     >
-                      0800 DENTLAB
+                      +64 20 445 7065
                     </a>
                   </div>
                 </div>
@@ -589,23 +703,12 @@ export default function Home() {
       </section>
 
       {/* ── Footer ──────────────────────────────────────────── */}
-      <footer className="bg-[#0a0a0a] py-8">
+      <footer className="bg-[#0a0a0a] py-4">
         <div
           className={`${SECTION} flex flex-col items-center justify-between gap-4 sm:flex-row`}
         >
-          <div className="flex items-center gap-2.5">
-            <span className="flex h-6 w-6 items-center justify-center rounded bg-[var(--accent)]">
-              <svg
-                viewBox="0 0 24 24"
-                className="h-3.5 w-3.5 fill-black"
-                aria-hidden="true"
-              >
-                <path d="M3 6h18v2H3V6zm3 5h12v2H6v-2zm3 5h6v2H9v-2z" />
-              </svg>
-            </span>
-            <span className="text-xs font-bold text-white/70">
-              DentLab<span className="text-[var(--accent)]">NZ</span>
-            </span>
+          <div className="flex items-center">
+            <Image src={logo} alt="DentLabNZ" className="h-12 w-auto" />
           </div>
           <p className="text-xs text-white/30">
             © {new Date().getFullYear()} DentLab NZ · Paintless Dent Removal
