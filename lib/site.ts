@@ -14,7 +14,7 @@ export const BUSINESS = {
   name: "DentLab NZ",
   legalName: "DentLab NZ",
   tagline: "Paintless Dent Removal Specialists",
-  email: "info@dentlabnz.co.nz",
+  email: "dentlabnz@gmail.com",
   phone: "+64204457065",
   phoneDisplay: "+64 20 445 7065",
   instagram: "https://www.instagram.com/dentlabnz",

@@ -371,7 +371,10 @@ export default function Home() {
       </section>
 
       {/* ── Services ────────────────────────────────────────── */}
-      <section id="services" className="scroll-mt-28 border-b border-white/8 sm:scroll-mt-32">
+      <section
+        id="services"
+        className="scroll-mt-28 border-b border-white/8 sm:scroll-mt-32"
+      >
         <div className={`${SECTION} py-16 sm:py-18 lg:py-20`}>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -513,7 +516,10 @@ export default function Home() {
       </section>
 
       {/* ── FAQ ─────────────────────────────────────────────── */}
-      <section id="faq" className="scroll-mt-28 border-b border-white/8 sm:scroll-mt-32">
+      <section
+        id="faq"
+        className="scroll-mt-28 border-b border-white/8 sm:scroll-mt-32"
+      >
         <div className={`${SECTION} py-16 sm:py-18`}>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
             <div className="space-y-3">
@@ -546,7 +552,10 @@ export default function Home() {
       </section>
 
       {/* ── Gallery (Instagram placeholder) ──────────────────── */}
-      <section id="our-work" className="scroll-mt-28 border-b border-white/8 sm:scroll-mt-32">
+      <section
+        id="our-work"
+        className="scroll-mt-28 border-b border-white/8 sm:scroll-mt-32"
+      >
         <div className={`${SECTION} py-16 sm:py-18 lg:py-20`}>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -655,10 +664,10 @@ export default function Home() {
                       Email
                     </p>
                     <a
-                      href="mailto:info@dentlabnz.co.nz"
+                      href="mailto:dentlabnz@gmail.com"
                       className="text-sm text-white/70 transition hover:text-white"
                     >
-                      info@dentlabnz.co.nz
+                      dentlabnz@gmail.com
                     </a>
                   </div>
                 </div>

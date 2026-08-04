@@ -19,7 +19,7 @@ interface Photo {
 }
 
 const FALLBACK_ERROR =
-  "Something went wrong sending your request. Please email info@dentlabnz.co.nz or give us a call.";
+  "Something went wrong sending your request. Please email dentlabnz@gmail.com or give us a call.";
 
 export function QuoteForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -81,12 +81,12 @@ export function QuoteForm() {
     const problems: string[] = [];
     if (failed) {
       problems.push(
-        `${failed} file${failed > 1 ? "s" : ""} couldn't be read — please use a JPG or PNG.`
+        `${failed} file${failed > 1 ? "s" : ""} couldn't be read — please use a JPG or PNG.`,
       );
     }
     if (skippedForSpace) {
       problems.push(
-        `${skippedForSpace} photo${skippedForSpace > 1 ? "s were" : " was"} skipped — up to ${MAX_PHOTOS} photos fit in one enquiry.`
+        `${skippedForSpace} photo${skippedForSpace > 1 ? "s were" : " was"} skipped — up to ${MAX_PHOTOS} photos fit in one enquiry.`,
       );
     }
     if (problems.length) setError(problems.join(" "));
@@ -212,10 +212,7 @@ export function QuoteForm() {
         </div>
 
         <div className="space-y-1.5">
-          <label
-            htmlFor="damage"
-            className="text-xs font-medium text-white/60"
-          >
+          <label htmlFor="damage" className="text-xs font-medium text-white/60">
             Type of damage
           </label>
           <select
@@ -359,9 +356,7 @@ export function QuoteForm() {
 
         <button
           type="submit"
-          disabled={
-            status === "submitting" || status === "sent" || processing
-          }
+          disabled={status === "submitting" || status === "sent" || processing}
           className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--accent)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-black shadow-sm transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
         >
           {status === "submitting"
