@@ -10,6 +10,9 @@ import {
   formatBytes,
 } from "@/lib/compress-image";
 
+// TODO: flip to true once the contact form is wired up and ready to go live.
+const FORM_ENABLED = false;
+
 type Status = "idle" | "submitting" | "sent" | "error";
 
 interface Photo {
@@ -139,7 +142,32 @@ export function QuoteForm() {
     "w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white outline-none placeholder:text-white/30 transition focus:border-[var(--accent)] focus:bg-white/8 focus:ring-2 focus:ring-[var(--accent)]/30";
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-[#1a1a1a] p-6 sm:p-8">
+    <div className="relative rounded-2xl border border-white/10 bg-[#1a1a1a] p-6 sm:p-8">
+      {!FORM_ENABLED && (
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 rounded-2xl bg-[#1a1a1a]/90 p-6 text-center backdrop-blur-sm">
+          <p className="text-sm font-semibold uppercase tracking-[0.15em] text-[var(--accent)]">
+            Quote form coming soon
+          </p>
+          <p className="max-w-xs text-xs text-white/50">
+            This form isn&apos;t connected yet. In the meantime, email{" "}
+            <a
+              href="mailto:dentlabnz@gmail.com"
+              className="text-white/80 underline underline-offset-2 hover:text-white"
+            >
+              dentlabnz@gmail.com
+            </a>{" "}
+            or call{" "}
+            <a
+              href="tel:+6400000000"
+              className="text-white/80 underline underline-offset-2 hover:text-white"
+            >
+              +64 20 445 7065
+            </a>
+            .
+          </p>
+        </div>
+      )}
+
       <h3 className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--accent)]">
         Get a free quote
       </h3>
@@ -148,6 +176,7 @@ export function QuoteForm() {
       </p>
 
       <form
+        inert={!FORM_ENABLED}
         ref={formRef}
         onSubmit={handleSubmit}
         className="relative mt-6 space-y-4"

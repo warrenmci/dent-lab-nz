@@ -5,29 +5,40 @@ import InstagramFeed from "./components/InstagramFeed";
 import logo from "../assets/dentlabnz_logo_landscape.png";
 import featureBefore from "../assets/feature_dent_before.jpg";
 import featureAfter from "../assets/feature_dent_after.jpg";
+import doorDings from "../assets/door_dings_1.jpg";
+import creaseDamage from "../assets/crease_dmg_1.jpg";
+import hailDamage from "../assets/hail_damage_1.jpg";
+import fleetDamage from "../assets/fleet_dmg_1.jpg";
 
 const SECTION = "mx-auto w-full max-w-5xl px-6 sm:px-8 lg:px-10 xl:max-w-6xl";
+
+// TODO: flip to true once real Instagram gallery images are ready.
+const GALLERY_ENABLED = false;
 
 const SERVICES = [
   {
     title: "Door Dings & Parking Dents",
     desc: "The most common vehicle damage — caused by car doors, shopping trolleys, or tight car parks. We restore the panel to factory condition without touching the paint.",
     detail: "Most repairs completed in under 2 hours",
+    image: doorDings,
   },
   {
     title: "Crease & Sharp Dent Repair",
     desc: "More complex damage with a defined edge or crease requires specialist technique. We assess each dent individually and advise honestly on what PDR can achieve.",
     detail: "Free assessment on complex repairs",
+    image: creaseDamage,
   },
   {
     title: "Hail Damage Repair",
     desc: "A hailstorm can leave dozens of dents across every panel. Our technicians work methodically panel by panel, bringing your vehicle back to pre-storm condition.",
     detail: "Insurance claims supported",
+    image: hailDamage,
   },
   {
     title: "Fleet & Dealership PDR",
     desc: "We work with car dealerships and fleet operators to keep vehicles looking their best. Competitive volume pricing and flexible scheduling to suit your operation.",
     detail: "Volume pricing available",
+    image: fleetDamage,
   },
 ];
 
@@ -402,23 +413,14 @@ export default function Home() {
                   <p className="text-xs leading-relaxed text-black/70">
                     {s.desc}
                   </p>
-                  <div className="mt-3 flex aspect-[4/3] items-center justify-center rounded-lg border border-dashed border-black/20 bg-black/5">
-                    <div className="flex flex-col items-center gap-1 text-black/40">
-                      <svg
-                        className="h-6 w-6"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                      >
-                        <rect x="3" y="4" width="18" height="16" rx="2" />
-                        <circle cx="8.5" cy="9.5" r="1.5" />
-                        <path d="M21 16l-5-5-4 4-3-3-6 6" />
-                      </svg>
-                      <span className="text-[0.6rem] font-medium uppercase tracking-[0.15em]">
-                        Placeholder
-                      </span>
-                    </div>
+                  <div className="relative mt-3 aspect-[4/3] overflow-hidden rounded-lg bg-black/5">
+                    <Image
+                      src={s.image}
+                      alt={s.title}
+                      fill
+                      className="object-cover"
+                      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    />
                   </div>
                 </div>
                 <p className="mt-5 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-black/60">
@@ -572,31 +574,44 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <div
-                key={i}
-                className="flex aspect-square items-center justify-center rounded-xl border border-dashed border-white/15 bg-[#1a1a1a]"
-              >
-                <div className="flex flex-col items-center gap-1 text-white/25">
-                  <svg
-                    className="h-6 w-6"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  >
-                    <rect x="3" y="4" width="18" height="16" rx="2" />
-                    <circle cx="8.5" cy="9.5" r="1.5" />
-                    <path d="M21 16l-5-5-4 4-3-3-6 6" />
-                  </svg>
-                  <span className="text-[0.6rem] font-medium uppercase tracking-[0.15em]">
-                    Placeholder
-                  </span>
+          {GALLERY_ENABLED ? (
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="flex aspect-square items-center justify-center rounded-xl border border-dashed border-white/15 bg-[#1a1a1a]"
+                >
+                  <div className="flex flex-col items-center gap-1 text-white/25">
+                    <svg
+                      className="h-6 w-6"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                    >
+                      <rect x="3" y="4" width="18" height="16" rx="2" />
+                      <circle cx="8.5" cy="9.5" r="1.5" />
+                      <path d="M21 16l-5-5-4 4-3-3-6 6" />
+                    </svg>
+                    <span className="text-[0.6rem] font-medium uppercase tracking-[0.15em]">
+                      Placeholder
+                    </span>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className="mt-8 flex flex-col items-center gap-2 py-10 text-center">
+              <p className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                Gallery{" "}
+                <span className="text-[var(--accent)]">coming soon</span>
+              </p>
+              <p className="max-w-sm text-xs text-white/45">
+                We&apos;re putting together our best repair photos — check
+                back soon or follow along on Instagram.
+              </p>
+            </div>
+          )}
 
           <div className="mt-8 flex justify-center">
             <a
