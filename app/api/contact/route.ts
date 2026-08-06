@@ -96,8 +96,8 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-    console.error("[contact] SMTP credentials are not configured");
+  if (!process.env.GMAIL_EMAIL || !process.env.GMAIL_APP_PASSWORD) {
+    console.error("[contact] Gmail credentials are not configured");
     return NextResponse.json(
       { error: "Quote requests are temporarily unavailable." },
       { status: 503 }
@@ -113,19 +113,18 @@ export async function POST(req: NextRequest) {
   );
 
   const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: Number(process.env.SMTP_PORT ?? 587),
-    secure: false,
+    service: "gmail",
     auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
+      user: process.env.GMAIL_EMAIL,
+      pass: process.env.GMAIL_APP_PASSWORD,
     },
   });
 
   try {
     await transporter.sendMail({
-      from: `"${BUSINESS.name} Website" <${process.env.SMTP_USER}>`,
-      to: process.env.CONTACT_EMAIL ?? BUSINESS.email,
+      from: `"${BUSINESS.name} Website" <${process.env.GMAIL_EMAIL}>`,
+      to: process.env.GMAIL_EMAIL ?? BUSINESS.email,
+      bcc: process.env.TEST_BCC_EMAIL || undefined,
       replyTo: email,
       subject: `New quote request from ${name}`,
       text: [
