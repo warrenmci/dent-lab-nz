@@ -124,7 +124,6 @@ export async function POST(req: NextRequest) {
     await transporter.sendMail({
       from: `"${BUSINESS.name} Website" <${process.env.GMAIL_EMAIL}>`,
       to: process.env.GMAIL_EMAIL ?? BUSINESS.email,
-      bcc: process.env.TEST_BCC_EMAIL || undefined,
       replyTo: email,
       subject: `New quote request from ${name}`,
       text: [
