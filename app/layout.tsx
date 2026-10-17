@@ -14,15 +14,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const TITLE = "DentLab NZ | Paintless Dent Removal Specialists — New Zealand";
+const TITLE = "DentLabNZ | Paintless Dent Removal Specialists in New Zealand";
 const DESCRIPTION =
-  "DentLab NZ are New Zealand's paintless dent removal specialists. We fix door dings, hail damage, and panel dents without repainting — preserving your factory finish and vehicle value. Fast, affordable, expert PDR across NZ.";
+  "DentLabNZ are New Zealand's paintless dent removal specialists. We fix door dings, hail damage, and panel dents without repainting, preserving your factory finish and vehicle value. Fast, affordable, expert PDR across NZ.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: TITLE,
-    template: "%s | DentLab NZ",
+    template: "%s | DentLabNZ",
   },
   description: DESCRIPTION,
   applicationName: BUSINESS.name,
@@ -43,9 +43,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "DentLab NZ | Paintless Dent Removal Specialists",
+    title: "DentLabNZ | Paintless Dent Removal Specialists",
     description:
-      "Expert paintless dent removal across New Zealand. No repainting, no filler — just precision repairs that preserve your factory finish and vehicle value.",
+      "Expert paintless dent removal across New Zealand. No repainting, no filler, just precision repairs that preserve your factory finish and vehicle value.",
     url: SITE_URL,
     siteName: BUSINESS.name,
     locale: "en_NZ",
@@ -55,15 +55,15 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "DentLab NZ — Paintless Dent Removal Specialists",
+        alt: "DentLabNZ: Paintless Dent Removal Specialists",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DentLab NZ | Paintless Dent Removal Specialists",
+    title: "DentLabNZ | Paintless Dent Removal Specialists",
     description:
-      "Expert paintless dent removal across New Zealand. No repainting, no filler — just precision repairs.",
+      "Expert paintless dent removal across New Zealand. No repainting, no filler, just precision repairs.",
     images: ["/opengraph-image"],
   },
   robots: {
@@ -141,7 +141,7 @@ export default function RootLayout({
                     "@type": "Offer",
                     itemOffered: {
                       "@type": "Service",
-                      name: "Fleet & Dealership PDR",
+                      name: "Garage Door Dent Repair",
                     },
                   },
                 ],

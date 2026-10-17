@@ -81,12 +81,12 @@ export function QuoteForm() {
     const problems: string[] = [];
     if (failed) {
       problems.push(
-        `${failed} file${failed > 1 ? "s" : ""} couldn't be read — please use a JPG or PNG.`,
+        `${failed} file${failed > 1 ? "s" : ""} couldn't be read. Please use a JPG or PNG.`,
       );
     }
     if (skippedForSpace) {
       problems.push(
-        `${skippedForSpace} photo${skippedForSpace > 1 ? "s were" : " was"} skipped — up to ${MAX_PHOTOS} photos fit in one enquiry.`,
+        `${skippedForSpace} photo${skippedForSpace > 1 ? "s were" : " was"} skipped. Up to ${MAX_PHOTOS} photos fit in one enquiry.`,
       );
     }
     if (problems.length) setError(problems.join(" "));
@@ -144,7 +144,7 @@ export function QuoteForm() {
         Get a free quote
       </h3>
       <p className="mt-1 text-sm text-white/50">
-        Describe your damage or send photos — we&apos;ll get back to you fast.
+        Describe your damage or send photos, and we&apos;ll get back to you fast.
       </p>
 
       <form
@@ -236,6 +236,9 @@ export function QuoteForm() {
             <option value="panel" className="bg-[#1a1a1a] text-white">
               Panel dent
             </option>
+            <option value="garage-door" className="bg-[#1a1a1a] text-white">
+              Garage door
+            </option>
             <option value="fleet" className="bg-[#1a1a1a] text-white">
               Fleet / multiple vehicles
             </option>
@@ -261,14 +264,14 @@ export function QuoteForm() {
           />
         </div>
 
-        {/* Photos — compressed in the browser before upload */}
+        {/* Photos, compressed in the browser before upload */}
         <div className="space-y-2">
           <div className="flex items-baseline justify-between gap-2">
             <span className="text-xs font-medium text-white/60">
               Photos of the damage{" "}
               <span className="text-white/30">(optional)</span>
             </span>
-            <span className="text-[0.65rem] tabular-nums text-white/30">
+            <span className="text-[0.7rem] tabular-nums text-white/30">
               {photos.length}/{MAX_PHOTOS}
               {usedBytes > 0 && ` · ${formatBytes(usedBytes)}`}
             </span>
@@ -308,7 +311,7 @@ export function QuoteForm() {
                   : "Add photos"}
           </button>
 
-          <p className="text-[0.65rem] leading-relaxed text-white/30">
+          <p className="text-[0.7rem] leading-relaxed text-white/30">
             Clear shots from a couple of angles help us quote accurately. Photos
             are resized on your device before sending, so large files are fine.
           </p>
@@ -342,7 +345,7 @@ export function QuoteForm() {
           )}
         </div>
 
-        {/* Honeypot — hidden from users, catches naive spam bots */}
+        {/* Honeypot: hidden from users, catches naive spam bots */}
         <div className="absolute left-[-9999px]" aria-hidden="true">
           <label htmlFor="company">Company</label>
           <input
@@ -371,7 +374,7 @@ export function QuoteForm() {
         <div aria-live="polite" className="empty:hidden">
           {status === "sent" && (
             <p className="text-xs text-white/50">
-              Thanks — we&apos;ll be in touch within one business day.
+              Thanks, we&apos;ll be in touch within one business day.
             </p>
           )}
           {error && (

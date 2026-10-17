@@ -2,7 +2,7 @@
  * Browser-side image downscaling for quote-request photos.
  *
  * Vercel caps a function's request body at 4.5 MB, and a modern phone photo is
- * 3–8 MB on its own — so uploading originals would 413 on the first real
+ * 3 to 8 MB on its own, so uploading originals would 413 on the first real
  * submission. Resizing to a 1600px JPEG brings a typical photo under ~300 KB,
  * which is still ample to judge whether a dent is PDR-viable, and makes the
  * upload survivable on mobile data.
@@ -33,7 +33,7 @@ function toJpgName(name: string): string {
 async function decode(file: File): Promise<ImageBitmap | HTMLImageElement> {
   if (typeof createImageBitmap === "function") {
     try {
-      // `from-image` honours the EXIF orientation flag — without it, photos
+      // `from-image` honours the EXIF orientation flag: without it, photos
       // taken in portrait arrive in the inbox rotated on their side.
       return await createImageBitmap(file, { imageOrientation: "from-image" });
     } catch {
@@ -60,7 +60,7 @@ async function decode(file: File): Promise<ImageBitmap | HTMLImageElement> {
  * Downscales and re-encodes an image as JPEG. Returns the original untouched if
  * compressing it would not actually make it smaller.
  *
- * Throws if the file cannot be decoded — the caller should surface that to the
+ * Throws if the file cannot be decoded, so the caller should surface that to the
  * customer rather than silently dropping the photo.
  */
 export async function compressImage(file: File): Promise<File> {

@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { BUSINESS } from "@/lib/site";
 
-export const alt = "DentLab NZ — Paintless Dent Removal Specialists";
+export const alt = "DentLabNZ: Paintless Dent Removal Specialists";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -36,7 +36,7 @@ export default async function OpengraphImage() {
               fontWeight: 600,
             }}
           >
-            Paintless Dent Removal — New Zealand
+            Paintless Dent Removal in New Zealand
           </div>
           <div
             style={{

@@ -2,15 +2,26 @@ import Image from "next/image";
 import Link from "next/link";
 import { QuoteForm } from "./components/QuoteForm";
 import InstagramFeed from "./components/InstagramFeed";
-import logo from "../assets/dentlabnz_logo_landscape.png";
+// Trimmed, transparent build of the brand mark, derived from the supplied
+// JPEG (kept alongside as dentlabnz_logo_dont_use.jpg). The JPEG's solid
+// black field is keyed out to alpha, so the mark can cross the nav divider
+// and sit on any surface without dragging a black rectangle behind it.
+// This is the single logo source for the whole site, header and footer.
+import logo from "../assets/dentlabnz_logo.png";
+// Circular badge, cut out of price_beat.jpg so the gold seal sits on the
+// page background with no black square around it.
+import priceBeat from "../assets/price_beat.png";
 import featureBefore from "../assets/feature_dent_before.jpg";
 import featureAfter from "../assets/feature_dent_after.jpg";
 import doorDings from "../assets/door_dings_1.jpg";
 import creaseDamage from "../assets/crease_dmg_1.jpg";
 import hailDamage from "../assets/hail_damage_1.jpg";
-import fleetDamage from "../assets/fleet_dmg_1.jpg";
+import garageDoorDamage from "../assets/garage_door_damage_1.jpg";
 
 const SECTION = "mx-auto w-full max-w-5xl px-6 sm:px-8 lg:px-10 xl:max-w-6xl";
+
+const NAV_LINK =
+  "text-xs font-medium uppercase tracking-[0.18em] text-white/60 transition hover:text-white";
 
 // TODO: flip to true once real Instagram gallery images are ready.
 const GALLERY_ENABLED = false;
@@ -18,7 +29,7 @@ const GALLERY_ENABLED = false;
 const SERVICES = [
   {
     title: "Door Dings & Parking Dents",
-    desc: "The most common vehicle damage — caused by car doors, shopping trolleys, or tight car parks. We restore the panel to factory condition without touching the paint.",
+    desc: "The most common vehicle damage, caused by car doors, shopping trolleys, or tight car parks. We restore the panel to factory condition without touching the paint.",
     detail: "Most repairs completed in under 2 hours",
     image: doorDings,
   },
@@ -35,10 +46,10 @@ const SERVICES = [
     image: hailDamage,
   },
   {
-    title: "Fleet & Dealership PDR",
-    desc: "We work with car dealerships and fleet operators to keep vehicles looking their best. Competitive volume pricing and flexible scheduling to suit your operation.",
-    detail: "Volume pricing available",
-    image: fleetDamage,
+    title: "Garage Door Repairs",
+    desc: "A dented steel garage door panel responds to the same techniques we use on vehicles. We work the metal back into line, so there is no need to replace the section or repaint it.",
+    detail: "No panel replacement needed",
+    image: garageDoorDamage,
   },
 ];
 
@@ -49,7 +60,7 @@ const BENEFITS = [
   },
   {
     label: "Up to 70% cheaper",
-    body: "PDR costs a fraction of traditional panel and paint repair for the same — or better — result.",
+    body: "PDR costs a fraction of traditional panel and paint repair for the same result, or better.",
   },
   {
     label: "Faster turnaround",
@@ -65,7 +76,7 @@ const BENEFITS = [
   },
   {
     label: "No harmful chemicals",
-    body: "PDR is a purely mechanical process — no solvents, no fillers, no environmental waste.",
+    body: "PDR is a purely mechanical process. No solvents, no fillers, no environmental waste.",
   },
 ];
 
@@ -78,23 +89,23 @@ const STEPS = [
   {
     n: "02",
     title: "Book your repair",
-    body: "We'll arrange a time that works for you. Mobile service available — we can come to your home, workplace, or dealership.",
+    body: "We'll arrange a time that works for you. Mobile service available, so we can come to your home, workplace, or dealership.",
   },
   {
     n: "03",
     title: "Precision repair",
-    body: "Our specialist uses industry-leading PDR tools to carefully massage the metal back to its original form. No paint, no filler — just skill.",
+    body: "Our specialist uses industry-leading PDR tools to carefully massage the metal back to its original form. No paint, no filler, just skill.",
   },
 ];
 
 const FAQS = [
   {
     q: "What is paintless dent removal (PDR)?",
-    a: "PDR is a specialist technique that uses precision tools to gently push dented metal back to its original shape from behind the panel — without any repainting or filler. It preserves your vehicle's factory paint and finish.",
+    a: "PDR is a specialist technique that uses precision tools to gently push dented metal back to its original shape from behind the panel, without any repainting or filler. It preserves your vehicle's factory paint and finish.",
   },
   {
     q: "What types of dents can be repaired with PDR?",
-    a: "PDR works best on round dents with no paint damage — door dings, hail dents, minor panel dents. Sharp creases and dents with cracked or chipped paint may need a different approach. We'll always give you an honest assessment.",
+    a: "PDR works best on round dents with no paint damage: door dings, hail dents, minor panel dents. Sharp creases and dents with cracked or chipped paint may need a different approach. We'll always give you an honest assessment.",
   },
   {
     q: "How much does paintless dent removal cost in NZ?",
@@ -110,7 +121,7 @@ const FAQS = [
   },
   {
     q: "Can you help with insurance claims?",
-    a: "Yes — we work with major NZ insurers and can assist you with the claims process for hail and collision damage.",
+    a: "Yes. We work with major NZ insurers and can assist you with the claims process for hail and collision damage.",
   },
 ];
 
@@ -130,7 +141,7 @@ const FAQ_SCHEMA = {
 export default function Home() {
   return (
     <main className="bg-background text-foreground">
-      {/* FAQ rich results — generated from the same FAQS array rendered below,
+      {/* FAQ rich results, generated from the same FAQS array rendered below,
           so the markup and the schema can never drift apart. */}
       <script
         type="application/ld+json"
@@ -138,53 +149,53 @@ export default function Home() {
       />
 
       {/* ── Nav ─────────────────────────────────────────────── */}
+      {/* The bar is as tall as the logo it carries: each height below is the
+          logo height at that breakpoint plus even breathing room above and
+          below, so the mark sits fully inside a single flat header. */}
       <nav className="sticky top-0 z-50 border-b border-white/8 bg-[#111111]/90 backdrop-blur">
-        <div className={`${SECTION} flex items-center justify-between py-4`}>
-          <Link href="/" className="flex items-center">
+        <div
+          className={`${SECTION} relative flex h-22 items-center justify-between min-[360px]:h-26 sm:h-30 xl:h-38`}
+        >
+          {/* Section links, left. Below lg there is not enough room between
+              them and the centred logo, so they give way to the logo. */}
+          <div className="hidden items-center gap-6 lg:flex">
+            <a href="#our-work" className={NAV_LINK}>
+              Our work
+            </a>
+            <a href="#services" className={NAV_LINK}>
+              Services
+            </a>
+            <a href="#why-pdr" className={NAV_LINK}>
+              Why PDR
+            </a>
+            <a href="#faq" className={NAV_LINK}>
+              FAQ
+            </a>
+          </div>
+
+          {/* Centred logo, absolutely placed so it centres on the viewport
+              rather than on the space left over by the links and button. */}
+          <Link
+            href="/"
+            aria-label="DentLabNZ home"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 px-4"
+          >
             <Image
               src={logo}
               alt="DentLabNZ"
-              className="h-20 w-auto sm:h-24"
+              className="h-16 w-auto min-[360px]:h-20 sm:h-24 xl:h-32"
               priority
             />
           </Link>
-          <div className="hidden items-center gap-6 sm:flex">
-            <a
-              href="#services"
-              className="text-xs font-medium uppercase tracking-[0.18em] text-white/60 transition hover:text-white"
-            >
-              Services
-            </a>
-            <a
-              href="#why-pdr"
-              className="text-xs font-medium uppercase tracking-[0.18em] text-white/60 transition hover:text-white"
-            >
-              Why PDR
-            </a>
-            <a
-              href="#faq"
-              className="text-xs font-medium uppercase tracking-[0.18em] text-white/60 transition hover:text-white"
-            >
-              FAQ
-            </a>
-            <a
-              href="#our-work"
-              className="text-xs font-medium uppercase tracking-[0.18em] text-white/60 transition hover:text-white"
-            >
-              Our work
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center rounded-lg bg-[var(--accent)] px-4 py-2 text-xs font-bold uppercase tracking-[0.15em] text-black transition hover:brightness-110"
-            >
-              Free quote
-            </a>
-          </div>
+
+          {/* Call to action, right. Shortened on small screens so it never
+              crowds the logo. */}
           <a
             href="#contact"
-            className="inline-flex items-center rounded-lg bg-[var(--accent)] px-4 py-2 text-xs font-bold uppercase tracking-[0.15em] text-black transition hover:brightness-110 sm:hidden"
+            className="ml-auto inline-flex items-center rounded-lg bg-[var(--accent)] px-3 py-2 text-[0.7rem] font-bold uppercase tracking-[0.15em] text-black transition hover:brightness-110 sm:px-4 sm:text-xs"
           >
-            Free quote
+            <span className="sm:hidden">Quote</span>
+            <span className="hidden sm:inline">Free quote</span>
           </a>
         </div>
       </nav>
@@ -206,9 +217,9 @@ export default function Home() {
         <div className={`${SECTION} py-20 sm:py-24 lg:py-32`}>
           <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
             <div className="space-y-7">
-              <p className="inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/20 bg-[var(--accent)]/10 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-[var(--accent)]">
+              <p className="inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/20 bg-[var(--accent)]/10 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-[var(--accent)]">
                 <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-                Paintless Dent Removal Specialists — NZ
+                Paintless Dent Removal Specialists, NZ
               </p>
               <div className="space-y-4">
                 <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
@@ -218,9 +229,9 @@ export default function Home() {
                   </span>
                 </h1>
                 <p className="max-w-lg text-balance text-sm sm:text-base text-white/60">
-                  DentLab NZ restores your vehicle&apos;s panels to factory
-                  condition using expert paintless dent removal — faster,
-                  cheaper, and better for your car&apos;s resale value.
+                  DentLabNZ restores your vehicle&apos;s panels to factory
+                  condition using expert paintless dent removal. Faster, cheaper, and
+                  better for your car&apos;s resale value.
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-3 pt-1">
@@ -265,13 +276,13 @@ export default function Home() {
             <div className="relative">
               <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[var(--accent)]/10 via-transparent to-transparent blur-2xl" />
               <div className="rounded-2xl border border-white/10 bg-[#1a1a1a] p-6 shadow-2xl">
-                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-[var(--accent)]/70">
+                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-[var(--accent)]/70">
                   PDR vs Traditional repair
                 </p>
                 <div className="mt-4 space-y-3">
                   {[
-                    ["Turnaround", "Same day", "1–2 weeks"],
-                    ["Paint touched?", "Never", "Yes — repainted"],
+                    ["Turnaround", "Same day", "1 to 2 weeks"],
+                    ["Paint touched?", "Never", "Yes, repainted"],
                     ["Cost", "From $100+", "From $500+"],
                     ["Resale impact", "None", "Repair on record"],
                     ["Finish quality", "Factory original", "Colour-matched"],
@@ -280,20 +291,20 @@ export default function Home() {
                       key={label}
                       className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] items-center gap-2 rounded-lg bg-white/4 px-3 py-2.5"
                     >
-                      <span className="text-[0.65rem] font-medium text-white/40">
+                      <span className="text-[0.7rem] font-medium text-white/40">
                         {label}
                       </span>
-                      <span className="text-[0.7rem] font-semibold text-[var(--accent)]">
+                      <span className="text-[0.75rem] font-semibold text-[var(--accent)]">
                         {pdr}
                       </span>
-                      <span className="text-[0.65rem] text-white/35 line-through">
+                      <span className="text-[0.7rem] text-white/35 line-through">
                         {trad}
                       </span>
                     </div>
                   ))}
                 </div>
                 <div className="mt-4 rounded-lg bg-[var(--accent)]/10 px-3 py-2.5">
-                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
+                  <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
                     PDR saves up to 70% vs traditional body repair
                   </p>
                 </div>
@@ -301,11 +312,11 @@ export default function Home() {
             </div>
             */}
 
-            {/* Hero card — before/after */}
+            {/* Hero card, before and after */}
             <div className="relative">
               <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[var(--accent)]/10 via-transparent to-transparent blur-2xl" />
               <div className="rounded-2xl border border-white/10 bg-[#1a1a1a] p-6 shadow-2xl">
-                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-[var(--accent)]/70">
+                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-[var(--accent)]/70">
                   Before &amp; after
                 </p>
                 <div className="mt-4 grid grid-cols-2 gap-3">
@@ -319,7 +330,7 @@ export default function Home() {
                         sizes="(min-width: 1024px) 20vw, 45vw"
                       />
                     </div>
-                    <p className="text-center text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-white/40">
+                    <p className="text-center text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-white/40">
                       Before
                     </p>
                   </div>
@@ -333,7 +344,7 @@ export default function Home() {
                         sizes="(min-width: 1024px) 20vw, 45vw"
                       />
                     </div>
-                    <p className="text-center text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
+                    <p className="text-center text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
                       After
                     </p>
                   </div>
@@ -344,6 +355,20 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Price beat seal, straddling the hero's lower edge. The wrapper is
+          zero-height and sits between the two sections, so the seal centres
+          on the dividing line and is clipped by neither. */}
+      <div className="relative z-20 h-0">
+        <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
+          <Image
+            src={priceBeat}
+            alt="Guaranteed price beat. Show us a written quote from another repairer and we will beat it by 10 percent. Valid written competitor quotes only, terms and conditions apply."
+            className="h-32 w-auto drop-shadow-[0_10px_30px_rgba(240,197,0,0.25)] sm:h-40 lg:h-48"
+            priority
+          />
+        </div>
+      </div>
+
       {/* ── Our work (Instagram) ────────────────────────────── */}
       <InstagramFeed
         limit={12}
@@ -353,7 +378,7 @@ export default function Home() {
 
       {/* ── Coverage ────────────────────────────────────────── */}
       <section className="border-b border-white/8 bg-[#0f0f0f]">
-        <div className={`${SECTION} py-12 sm:py-14`}>
+        <div className={`${SECTION} pt-20 pb-12 sm:pt-24 sm:pb-14 lg:pt-28`}>
           <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-2">
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--accent)]">
@@ -364,14 +389,14 @@ export default function Home() {
               </h2>
               <p className="max-w-md text-sm text-white/50">
                 Mobile service available. We travel to your home, workplace, or
-                dealership — contact us to confirm availability in your area.
+                dealership. Contact us to confirm availability in your area.
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
               {["Bay of Plenty", "Waikato"].map((city) => (
                 <span
                   key={city}
-                  className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[0.65rem] font-medium text-white/60"
+                  className="rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white/75 sm:px-6 sm:py-3 sm:text-base"
                 >
                   {city}
                 </span>
@@ -381,10 +406,100 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Gallery (Instagram placeholder) ──────────────────── */}
+      <section
+        id="our-work"
+        className="scroll-mt-28 border-b border-white/8 sm:scroll-mt-32 xl:scroll-mt-40"
+      >
+        <div className={`${SECTION} py-16 sm:py-18 lg:py-20`}>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--accent)]">
+                Gallery
+              </p>
+              <h2 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
+                More from Instagram.
+              </h2>
+            </div>
+            <p className="max-w-xs text-xs text-white/45 sm:text-right">
+              Real repairs on real vehicles, straight from our Instagram,
+              updated as we work.
+            </p>
+          </div>
+
+          {GALLERY_ENABLED ? (
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="flex aspect-square items-center justify-center rounded-xl border border-dashed border-white/15 bg-[#1a1a1a]"
+                >
+                  <div className="flex flex-col items-center gap-1 text-white/25">
+                    <svg
+                      className="h-6 w-6"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                    >
+                      <rect x="3" y="4" width="18" height="16" rx="2" />
+                      <circle cx="8.5" cy="9.5" r="1.5" />
+                      <path d="M21 16l-5-5-4 4-3-3-6 6" />
+                    </svg>
+                    <span className="text-[0.65rem] font-medium uppercase tracking-[0.15em]">
+                      Placeholder
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="mt-8 flex flex-col items-center gap-2 py-10 text-center">
+              <p className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                Gallery{" "}
+                <span className="text-[var(--accent)]">coming soon</span>
+              </p>
+              <p className="max-w-sm text-xs text-white/45">
+                We&apos;re putting together our best repair photos. Check back
+                soon or follow along on Instagram.
+              </p>
+            </div>
+          )}
+
+          <div className="mt-8 flex justify-center">
+            <a
+              href="https://www.instagram.com/dentlabnz"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-white/80 transition hover:border-[var(--accent)]/40 hover:bg-white/10 hover:text-white"
+              aria-label="Follow DentLabNZ on Instagram"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+              </svg>
+              More work on Instagram
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* ── Services ────────────────────────────────────────── */}
       <section
         id="services"
-        className="scroll-mt-28 border-b border-white/8 sm:scroll-mt-32"
+        className="scroll-mt-28 border-b border-white/8 sm:scroll-mt-32 xl:scroll-mt-40"
       >
         <div className={`${SECTION} py-16 sm:py-18 lg:py-20`}>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
@@ -423,7 +538,7 @@ export default function Home() {
                     />
                   </div>
                 </div>
-                <p className="mt-5 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-black/60">
+                <p className="mt-5 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-black/60">
                   {s.detail}
                 </p>
               </article>
@@ -435,7 +550,7 @@ export default function Home() {
       {/* ── Why PDR ─────────────────────────────────────────── */}
       <section
         id="why-pdr"
-        className="scroll-mt-28 border-b border-white/8 bg-[#0f0f0f] sm:scroll-mt-32"
+        className="scroll-mt-28 border-b border-white/8 bg-[#0f0f0f] sm:scroll-mt-32 xl:scroll-mt-40"
       >
         <div className={`${SECTION} py-16 sm:py-18 lg:py-20`}>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
@@ -444,12 +559,12 @@ export default function Home() {
                 Why paintless dent removal?
               </p>
               <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
-                The smarter repair — for your car and your wallet.
+                The smarter repair for your car and your wallet.
               </h2>
               <p className="max-w-md text-sm text-white/50">
                 Traditional panel and paint repairs can cost thousands and leave
                 a repair history that hurts resale value. PDR achieves the same
-                result — often better — at a fraction of the cost and in a
+                result, often better, at a fraction of the cost and in a
                 fraction of the time.
               </p>
               <a
@@ -520,7 +635,7 @@ export default function Home() {
       {/* ── FAQ ─────────────────────────────────────────────── */}
       <section
         id="faq"
-        className="scroll-mt-28 border-b border-white/8 sm:scroll-mt-32"
+        className="scroll-mt-28 border-b border-white/8 sm:scroll-mt-32 xl:scroll-mt-40"
       >
         <div className={`${SECTION} py-16 sm:py-18`}>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
@@ -553,100 +668,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Gallery (Instagram placeholder) ──────────────────── */}
-      <section
-        id="our-work"
-        className="scroll-mt-28 border-b border-white/8 sm:scroll-mt-32"
-      >
-        <div className={`${SECTION} py-16 sm:py-18 lg:py-20`}>
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--accent)]">
-                Gallery
-              </p>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
-                More from Instagram.
-              </h2>
-            </div>
-            <p className="max-w-xs text-xs text-white/45 sm:text-right">
-              Real repairs on real vehicles — straight from our Instagram,
-              updated as we work.
-            </p>
-          </div>
-
-          {GALLERY_ENABLED ? (
-            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-              {Array.from({ length: 8 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="flex aspect-square items-center justify-center rounded-xl border border-dashed border-white/15 bg-[#1a1a1a]"
-                >
-                  <div className="flex flex-col items-center gap-1 text-white/25">
-                    <svg
-                      className="h-6 w-6"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                    >
-                      <rect x="3" y="4" width="18" height="16" rx="2" />
-                      <circle cx="8.5" cy="9.5" r="1.5" />
-                      <path d="M21 16l-5-5-4 4-3-3-6 6" />
-                    </svg>
-                    <span className="text-[0.6rem] font-medium uppercase tracking-[0.15em]">
-                      Placeholder
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="mt-8 flex flex-col items-center gap-2 py-10 text-center">
-              <p className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-                Gallery{" "}
-                <span className="text-[var(--accent)]">coming soon</span>
-              </p>
-              <p className="max-w-sm text-xs text-white/45">
-                We&apos;re putting together our best repair photos — check
-                back soon or follow along on Instagram.
-              </p>
-            </div>
-          )}
-
-          <div className="mt-8 flex justify-center">
-            <a
-              href="https://www.instagram.com/dentlabnz"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-white/80 transition hover:border-[var(--accent)]/40 hover:bg-white/10 hover:text-white"
-              aria-label="Follow DentLab NZ on Instagram"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-              </svg>
-              More work on Instagram
-            </a>
-          </div>
-        </div>
-      </section>
-
       {/* ── Contact ─────────────────────────────────────────── */}
       <section
         id="contact"
-        className="scroll-mt-28 border-b border-white/8 bg-[#0f0f0f] sm:scroll-mt-32"
+        className="scroll-mt-28 border-b border-white/8 bg-[#0f0f0f] sm:scroll-mt-32 xl:scroll-mt-40"
       >
         <div className={`${SECTION} py-16 sm:py-18 lg:py-20`}>
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
@@ -658,7 +683,7 @@ export default function Home() {
                 Ready to restore your vehicle?
               </h2>
               <p className="max-w-md text-sm text-white/55">
-                Send us a description — or better yet, a photo — of the damage
+                Send us a description, or better yet a photo, of the damage
                 and we&apos;ll come back with an honest assessment and a price.
                 No obligation.
               </p>
@@ -675,7 +700,7 @@ export default function Home() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
+                    <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
                       Email
                     </p>
                     <a
@@ -698,7 +723,7 @@ export default function Home() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
+                    <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
                       Phone
                     </p>
                     <a
@@ -711,7 +736,7 @@ export default function Home() {
                 </div>
 
                 <div className="rounded-xl border border-white/8 bg-[#1a1a1a] p-4">
-                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
+                  <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
                     Response time
                   </p>
                   <p className="mt-1 text-sm text-white/60">
@@ -732,10 +757,10 @@ export default function Home() {
           className={`${SECTION} flex flex-col items-center justify-between gap-4 sm:flex-row`}
         >
           <div className="flex items-center">
-            <Image src={logo} alt="DentLabNZ" className="h-12 w-auto" />
+            <Image src={logo} alt="DentLabNZ" className="h-16 w-auto" />
           </div>
           <p className="text-xs text-white/30">
-            © {new Date().getFullYear()} DentLab NZ · Paintless Dent Removal
+            © {new Date().getFullYear()} DentLabNZ · Paintless Dent Removal
             Specialists · New Zealand
           </p>
           <div className="flex items-center gap-1 text-xs text-white/30">

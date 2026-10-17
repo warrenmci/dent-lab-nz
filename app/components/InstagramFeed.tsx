@@ -16,25 +16,25 @@ function PostCard({ post }: { post: InstagramPost }) {
       aria-label={
         post.caption
           ? post.caption.slice(0, 80)
-          : "DentLab NZ paintless dent removal job on Instagram"
+          : "DentLabNZ paintless dent removal job on Instagram"
       }
     >
       <Image
         src={imageUrl}
-        alt={post.caption ?? "Paintless dent removal repair by DentLab NZ"}
+        alt={post.caption ?? "Paintless dent removal repair by DentLabNZ"}
         fill
         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
         className="object-cover transition-transform duration-300 group-hover:scale-105"
       />
 
       {post.media_type === "VIDEO" && (
-        <span className="absolute right-2 top-2 rounded bg-black/70 px-1.5 py-0.5 text-[0.65rem] text-[var(--accent)]">
+        <span className="absolute right-2 top-2 rounded bg-black/70 px-1.5 py-0.5 text-[0.7rem] text-[var(--accent)]">
           ▶
         </span>
       )}
 
       {post.media_type === "CAROUSEL_ALBUM" && (
-        <span className="absolute right-2 top-2 rounded bg-black/70 px-1.5 py-0.5 text-[0.65rem] text-[var(--accent)]">
+        <span className="absolute right-2 top-2 rounded bg-black/70 px-1.5 py-0.5 text-[0.7rem] text-[var(--accent)]">
           ⧉
         </span>
       )}
@@ -68,7 +68,7 @@ export default async function InstagramFeed({
     posts = await getInstagramPosts(limit);
   } catch (error) {
     console.error("[InstagramFeed]", error);
-    // Fail silently in production — don't break the page
+    // Fail silently in production, don't break the page
     return null;
   }
 
@@ -87,7 +87,7 @@ export default async function InstagramFeed({
             </h2>
           </div>
           <p className="max-w-xs text-xs text-white/45 sm:text-right">
-            Real repairs on real vehicles — straight from our Instagram, updated
+            Real repairs on real vehicles, straight from our Instagram, updated
             as we work.
           </p>
         </div>
@@ -104,7 +104,7 @@ export default async function InstagramFeed({
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-white/80 transition hover:border-[var(--accent)]/40 hover:bg-white/10 hover:text-white"
-            aria-label="Follow DentLab NZ on Instagram"
+            aria-label="Follow DentLabNZ on Instagram"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

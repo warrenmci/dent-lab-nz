@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
 
-  // Honeypot — bots fill hidden fields, humans never see them
+  // Honeypot: bots fill hidden fields, humans never see them
   if (clean(form.get("company"))) {
     return NextResponse.json({ ok: true });
   }
@@ -133,7 +133,7 @@ export async function POST(req: NextRequest) {
         `Vehicle: ${vehicle || "not provided"}`,
         `Damage type: ${damage || "not provided"}`,
         `Photos attached: ${attachments.length}`,
-        `Message:\n${message || "—"}`,
+        `Message:\n${message || "(none)"}`,
       ].join("\n"),
       attachments,
     });
