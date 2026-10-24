@@ -29,7 +29,9 @@ const redis = new Redis({
   token: process.env.KV_REST_API_TOKEN!,
 })
 
-const TOKEN_KEY = 'instagram:access_token'
+// Namespaced per site so a Redis store shared with another project can't hand
+// this site the other account's token (or have its refresh overwrite ours).
+const TOKEN_KEY = 'dentlabnz:instagram:access_token'
 
 async function getToken(): Promise<string> {
   const stored = await redis.get<string>(TOKEN_KEY)
@@ -49,7 +51,7 @@ async function getToken(): Promise<string> {
  * monthly and Instagram's long-lived tokens last 60 days, so a day of staleness
  * is harmless.
  */
-const getCachedToken = unstable_cache(getToken, ['instagram-access-token'], {
+const getCachedToken = unstable_cache(getToken, ['dentlabnz-instagram-access-token'], {
   revalidate: 86400,
   tags: ['instagram-token'],
 })

@@ -1,10 +1,10 @@
 /**
  * Browser-side image downscaling for quote-request photos.
  *
- * Vercel caps a function's request body at 4.5 MB, and a modern phone photo is
+ * Vercel caps a function's request body at 4.5 MB and a modern phone photo is
  * 3 to 8 MB on its own, so uploading originals would 413 on the first real
  * submission. Resizing to a 1600px JPEG brings a typical photo under ~300 KB,
- * which is still ample to judge whether a dent is PDR-viable, and makes the
+ * which is still ample to judge whether a dent is PDR-viable and makes the
  * upload survivable on mobile data.
  */
 

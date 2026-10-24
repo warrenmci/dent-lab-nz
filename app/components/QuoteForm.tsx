@@ -144,7 +144,7 @@ export function QuoteForm() {
         Get a free quote
       </h3>
       <p className="mt-1 text-sm text-white/50">
-        Describe your damage or send photos, and we&apos;ll get back to you fast.
+        Describe your damage or send photos and we&apos;ll get back to you fast.
       </p>
 
       <form

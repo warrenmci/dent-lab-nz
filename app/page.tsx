@@ -109,7 +109,7 @@ const FAQS = [
   },
   {
     q: "How much does paintless dent removal cost in NZ?",
-    a: "Pricing depends on the size, depth, and location of the dent. A single door ding typically starts from $100 + GST. Hail damage and fleet work is priced per vehicle. Contact us for a free quote.",
+    a: "Pricing depends on the size, depth and location of the dent. A single door ding typically starts from $100 + GST. Hail damage and fleet work is priced per vehicle. Contact us for a free quote.",
   },
   {
     q: "Will the dent come back after repair?",
@@ -223,15 +223,15 @@ export default function Home() {
               </p>
               <div className="space-y-4">
                 <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-                  Precision dent repair.{" "}
+                  Paintless Dent Removal in Tauranga and Waikato.{" "}
                   <span className="text-[var(--accent)]">
                     No paint. No filler.
                   </span>
                 </h1>
                 <p className="max-w-lg text-balance text-sm sm:text-base text-white/60">
                   DentLabNZ restores your vehicle&apos;s panels to factory
-                  condition using expert paintless dent removal. Faster, cheaper, and
-                  better for your car&apos;s resale value.
+                  condition using expert paintless dent removal. Faster, cheaper
+                  and better for your car&apos;s resale value.
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-3 pt-1">
@@ -683,9 +683,9 @@ export default function Home() {
                 Ready to restore your vehicle?
               </h2>
               <p className="max-w-md text-sm text-white/55">
-                Send us a description, or better yet a photo, of the damage
-                and we&apos;ll come back with an honest assessment and a price.
-                No obligation.
+                Send us a description, or better yet a photo, of the damage and
+                we&apos;ll come back with an honest assessment and a price. No
+                obligation.
               </p>
 
               <div className="space-y-3">

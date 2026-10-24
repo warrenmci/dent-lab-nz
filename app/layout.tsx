@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 const TITLE = "DentLabNZ | Paintless Dent Removal Specialists in New Zealand";
 const DESCRIPTION =
-  "DentLabNZ are New Zealand's paintless dent removal specialists. We fix door dings, hail damage, and panel dents without repainting, preserving your factory finish and vehicle value. Fast, affordable, expert PDR across NZ.";
+  "DentLabNZ are New Zealand's paintless dent removal specialists. We fix door dings, hail damage and panel dents without repainting, preserving your factory finish and vehicle value. Fast, affordable, expert PDR across NZ.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -95,7 +95,7 @@ export default function RootLayout({
               "@type": "AutoRepair",
               name: BUSINESS.name,
               description:
-                "Paintless dent removal specialists in New Zealand. Expert PDR for door dings, hail damage, and panel dents.",
+                "Paintless dent removal specialists in New Zealand. Expert PDR for door dings, hail damage and panel dents.",
               url: SITE_URL,
               "@id": `${SITE_URL}/#business`,
               image: `${SITE_URL}/opengraph-image`,
