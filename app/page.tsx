@@ -23,9 +23,6 @@ const SECTION = "mx-auto w-full max-w-5xl px-6 sm:px-8 lg:px-10 xl:max-w-6xl";
 const NAV_LINK =
   "text-xs font-medium uppercase tracking-[0.18em] text-white/60 transition hover:text-white";
 
-// TODO: flip to true once real Instagram gallery images are ready.
-const GALLERY_ENABLED = false;
-
 const SERVICES = [
   {
     title: "Door Dings & Parking Dents",
@@ -372,7 +369,8 @@ export default function Home() {
       {/* ── Our work (Instagram) ────────────────────────────── */}
       <InstagramFeed
         limit={12}
-        className="border-b border-white/8 bg-[#0f0f0f]"
+        id="our-work"
+        className="scroll-mt-28 border-b border-white/8 bg-[#0f0f0f] sm:scroll-mt-32 xl:scroll-mt-40"
         containerClass={`${SECTION} py-16 sm:py-18 lg:py-20`}
       />
 
@@ -402,96 +400,6 @@ export default function Home() {
                 </span>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Gallery (Instagram placeholder) ──────────────────── */}
-      <section
-        id="our-work"
-        className="scroll-mt-28 border-b border-white/8 sm:scroll-mt-32 xl:scroll-mt-40"
-      >
-        <div className={`${SECTION} py-16 sm:py-18 lg:py-20`}>
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--accent)]">
-                Gallery
-              </p>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
-                More from Instagram.
-              </h2>
-            </div>
-            <p className="max-w-xs text-xs text-white/45 sm:text-right">
-              Real repairs on real vehicles, straight from our Instagram,
-              updated as we work.
-            </p>
-          </div>
-
-          {GALLERY_ENABLED ? (
-            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-              {Array.from({ length: 8 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="flex aspect-square items-center justify-center rounded-xl border border-dashed border-white/15 bg-[#1a1a1a]"
-                >
-                  <div className="flex flex-col items-center gap-1 text-white/25">
-                    <svg
-                      className="h-6 w-6"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                    >
-                      <rect x="3" y="4" width="18" height="16" rx="2" />
-                      <circle cx="8.5" cy="9.5" r="1.5" />
-                      <path d="M21 16l-5-5-4 4-3-3-6 6" />
-                    </svg>
-                    <span className="text-[0.65rem] font-medium uppercase tracking-[0.15em]">
-                      Placeholder
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="mt-8 flex flex-col items-center gap-2 py-10 text-center">
-              <p className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-                Gallery{" "}
-                <span className="text-[var(--accent)]">coming soon</span>
-              </p>
-              <p className="max-w-sm text-xs text-white/45">
-                We&apos;re putting together our best repair photos. Check back
-                soon or follow along on Instagram.
-              </p>
-            </div>
-          )}
-
-          <div className="mt-8 flex justify-center">
-            <a
-              href="https://www.instagram.com/dentlabnz"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-white/80 transition hover:border-[var(--accent)]/40 hover:bg-white/10 hover:text-white"
-              aria-label="Follow DentLabNZ on Instagram"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-              </svg>
-              More work on Instagram
-            </a>
           </div>
         </div>
       </section>

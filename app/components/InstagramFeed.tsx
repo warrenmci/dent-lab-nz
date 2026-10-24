@@ -53,29 +53,29 @@ function PostCard({ post }: { post: InstagramPost }) {
 
 interface InstagramFeedProps {
   limit?: number;
+  id?: string;
   className?: string;
   containerClass?: string;
 }
 
 export default async function InstagramFeed({
   limit = 12,
+  id,
   className = "",
   containerClass = "",
 }: InstagramFeedProps) {
-  let posts: InstagramPost[];
+  let posts: InstagramPost[] = [];
 
   try {
     posts = await getInstagramPosts(limit);
   } catch (error) {
+    // Don't break the page; fall through to the "coming soon" state so the
+    // section (and its nav anchor) still renders.
     console.error("[InstagramFeed]", error);
-    // Fail silently in production, don't break the page
-    return null;
   }
 
-  if (!posts.length) return null;
-
   return (
-    <section className={className}>
+    <section id={id} className={className}>
       <div className={containerClass}>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -92,11 +92,24 @@ export default async function InstagramFeed({
           </p>
         </div>
 
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-          {posts.map((post) => (
-            <PostCard key={post.id} post={post} />
-          ))}
-        </div>
+        {posts.length ? (
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+            {posts.map((post) => (
+              <PostCard key={post.id} post={post} />
+            ))}
+          </div>
+        ) : (
+          <div className="mt-8 flex flex-col items-center gap-2 py-10 text-center">
+            <p className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+              Gallery{" "}
+              <span className="text-[var(--accent)]">coming soon</span>
+            </p>
+            <p className="max-w-sm text-xs text-white/45">
+              We&apos;re putting together our best repair photos. Check back
+              soon or follow along on Instagram.
+            </p>
+          </div>
+        )}
 
         <div className="mt-8 flex justify-center">
           <a
