@@ -95,24 +95,6 @@ const BENEFITS = [
   },
 ];
 
-const STEPS = [
-  {
-    n: "01",
-    title: "Get a free quote",
-    body: "Send us photos of the damage or describe it in the form below. We'll respond within one business day with an honest assessment and price.",
-  },
-  {
-    n: "02",
-    title: "Book your repair",
-    body: "We'll arrange a time that works for you. Mobile service available, so we can come to your home, workplace, or dealership.",
-  },
-  {
-    n: "03",
-    title: "Precision repair",
-    body: "Our specialist uses industry-leading PDR tools to carefully massage the metal back to its original form. No paint, no filler, just skill.",
-  },
-];
-
 const FAQS = [
   {
     q: "What is paintless dent removal (PDR)?",
@@ -534,41 +516,6 @@ export default function Home() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Process ─────────────────────────────────────────── */}
-      <section className="border-b border-white/8">
-        <div className={`${SECTION} py-16 sm:py-18 lg:py-20`}>
-          <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--accent)]">
-              How it works
-            </p>
-            <h2 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
-              Three steps to a flawless finish.
-            </h2>
-          </div>
-
-          <div className="mt-10 grid gap-6 sm:grid-cols-3">
-            {STEPS.map((step, i) => (
-              <div key={step.n} className="relative">
-                {i < STEPS.length - 1 && (
-                  <div className="absolute right-0 top-5 hidden h-px w-[calc(100%-2.5rem)] -translate-y-1/2 bg-gradient-to-r from-white/10 to-transparent sm:block" />
-                )}
-                <div className="relative z-10 space-y-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--accent)]/30 bg-[var(--accent)]/10">
-                    <span className="text-xs font-bold tabular-nums text-[var(--accent)]">
-                      {step.n}
-                    </span>
-                  </div>
-                  <h3 className="text-sm font-bold text-white">{step.title}</h3>
-                  <p className="text-xs leading-relaxed text-white/50">
-                    {step.body}
-                  </p>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
