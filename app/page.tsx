@@ -12,8 +12,10 @@ import logo from "../assets/dentlabnz_logo.png";
 // Circular badge, cut out of price_beat.jpg so the gold seal sits on the
 // page background with no black square around it.
 import priceBeat from "../assets/price_beat.png";
-import featureBefore from "../assets/feature_dent_before.jpg";
-import featureAfter from "../assets/feature_dent_after.jpg";
+import feature1Before from "../assets/feature_1_dent_before.jpg";
+import feature1After from "../assets/feature_1_dent_after.jpg";
+import feature2Before from "../assets/feature_2_dent_before.jpg";
+import feature2After from "../assets/feature_2_dent_after.jpg";
 import doorDings from "../assets/door_dings_1.jpg";
 import creaseDamage from "../assets/crease_dmg_1.jpg";
 import hailDamage from "../assets/hail_damage_1.jpg";
@@ -23,6 +25,21 @@ const SECTION = "mx-auto w-full max-w-5xl px-6 sm:px-8 lg:px-10 xl:max-w-6xl";
 
 const NAV_LINK =
   "text-xs font-medium uppercase tracking-[0.18em] text-white/60 transition hover:text-white";
+
+const FEATURE_PAIRS = [
+  {
+    before: feature1Before,
+    beforeAlt: "Dent in a red vehicle's rear quarter panel before paintless dent removal",
+    after: feature1After,
+    afterAlt: "Same red panel after paintless dent removal, factory finish restored",
+  },
+  {
+    before: feature2Before,
+    beforeAlt: "Dent above the wheel arch of a silver vehicle before paintless dent removal",
+    after: feature2After,
+    afterAlt: "Same silver panel after paintless dent removal, factory finish restored",
+  },
+];
 
 const SERVICES = [
   {
@@ -317,35 +334,39 @@ export default function Home() {
                 <p className="text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-[var(--accent)]/70">
                   Before &amp; after
                 </p>
-                <div className="mt-4 grid grid-cols-2 gap-3">
-                  <div className="space-y-2">
-                    <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-white/4">
-                      <Image
-                        src={featureBefore}
-                        alt="Panel with dent before paintless dent removal"
-                        fill
-                        className="object-cover"
-                        sizes="(min-width: 1024px) 20vw, 45vw"
-                      />
+                <div className="mt-4 space-y-4">
+                  {FEATURE_PAIRS.map((pair) => (
+                    <div key={pair.beforeAlt} className="grid grid-cols-2 gap-3">
+                      <div className="space-y-2">
+                        <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-white/4">
+                          <Image
+                            src={pair.before}
+                            alt={pair.beforeAlt}
+                            fill
+                            className="object-cover"
+                            sizes="(min-width: 1024px) 20vw, 45vw"
+                          />
+                        </div>
+                        <p className="text-center text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-white/40">
+                          Before
+                        </p>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-white/4">
+                          <Image
+                            src={pair.after}
+                            alt={pair.afterAlt}
+                            fill
+                            className="object-cover"
+                            sizes="(min-width: 1024px) 20vw, 45vw"
+                          />
+                        </div>
+                        <p className="text-center text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
+                          After
+                        </p>
+                      </div>
                     </div>
-                    <p className="text-center text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-white/40">
-                      Before
-                    </p>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-white/4">
-                      <Image
-                        src={featureAfter}
-                        alt="Same panel after paintless dent removal, factory finish restored"
-                        fill
-                        className="object-cover"
-                        sizes="(min-width: 1024px) 20vw, 45vw"
-                      />
-                    </div>
-                    <p className="text-center text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
-                      After
-                    </p>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
