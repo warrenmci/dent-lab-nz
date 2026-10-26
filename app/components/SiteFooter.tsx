@@ -16,12 +16,20 @@ export function SiteFooter({ sectionClass }: { sectionClass: string }) {
             © {new Date().getFullYear()} DentLabNZ · Paintless Dent Removal
             Specialists · New Zealand
           </p>
-          <Link
-            href="/price-beat-terms"
-            className="text-xs text-white/40 underline-offset-4 transition hover:text-white hover:underline"
-          >
-            Price Beat Guarantee T&amp;Cs
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/blog"
+              className="text-xs text-white/40 underline-offset-4 transition hover:text-white hover:underline"
+            >
+              Blog
+            </Link>
+            <Link
+              href="/price-beat-terms"
+              className="text-xs text-white/40 underline-offset-4 transition hover:text-white hover:underline"
+            >
+              Price Beat Guarantee T&amp;Cs
+            </Link>
+          </div>
         </div>
         <div className="flex items-center gap-1 text-xs text-white/30">
           <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />

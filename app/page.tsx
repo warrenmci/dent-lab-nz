@@ -3,6 +3,8 @@ import Link from "next/link";
 import { QuoteForm } from "./components/QuoteForm";
 import InstagramFeed from "./components/InstagramFeed";
 import { SiteFooter } from "./components/SiteFooter";
+import { BlogCard } from "./components/BlogCard";
+import { BLOG_POSTS } from "@/lib/blog";
 // Trimmed, transparent build of the brand mark, derived from the supplied
 // JPEG (kept alongside as dentlabnz_logo_dont_use.jpg). The JPEG's solid
 // black field is keyed out to alpha, so the mark can cross the nav divider
@@ -168,6 +170,9 @@ export default function Home() {
             <a href="#faq" className={NAV_LINK}>
               FAQ
             </a>
+            <Link href="/blog" className={NAV_LINK}>
+              Blog
+            </Link>
           </div>
 
           {/* Centred logo, absolutely placed so it centres on the viewport
@@ -516,6 +521,37 @@ export default function Home() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Blog ────────────────────────────────────────────── */}
+      <section
+        id="blog"
+        className="scroll-mt-28 border-b border-white/8 sm:scroll-mt-32 xl:scroll-mt-40"
+      >
+        <div className={`${SECTION} py-16 sm:py-18 lg:py-20`}>
+          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div className="space-y-2">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--accent)]">
+                From the blog
+              </p>
+              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+                Dent repair advice and stories.
+              </h2>
+            </div>
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 rounded-lg border border-[var(--accent)]/30 bg-[var(--accent)]/10 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent)] transition hover:bg-[var(--accent)]/15"
+            >
+              View all posts
+            </Link>
+          </div>
+
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {BLOG_POSTS.slice(0, 3).map((post) => (
+              <BlogCard key={post.slug} post={post} />
+            ))}
           </div>
         </div>
       </section>
