@@ -18,6 +18,8 @@ export const BUSINESS = {
   phone: "+64204457065",
   phoneDisplay: "+64 20 445 7065",
   instagram: "https://www.instagram.com/dentlabnz",
+  // Swap for the Google Business Profile's reviews link once it's set up.
+  googleReviews: "https://www.google.com/search?q=DentLabNZ+reviews",
   priceRange: "$$",
   areasServed: [
     "Hamilton",

@@ -4,6 +4,7 @@ import { QuoteForm } from "./components/QuoteForm";
 import InstagramFeed from "./components/InstagramFeed";
 import { SiteFooter } from "./components/SiteFooter";
 import { BlogCard } from "./components/BlogCard";
+import { GoogleReviews } from "./components/GoogleReviews";
 import { BLOG_POSTS } from "@/lib/blog";
 // Trimmed, transparent build of the brand mark, derived from the supplied
 // JPEG (kept alongside as dentlabnz_logo_dont_use.jpg). The JPEG's solid
@@ -591,6 +592,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ── Reviews ─────────────────────────────────────────── */}
+      <GoogleReviews
+        sectionClass={SECTION}
+        className="scroll-mt-28 border-b border-white/8 bg-[var(--surface-alt)] sm:scroll-mt-32 xl:scroll-mt-40"
+      />
 
       {/* ── Contact ─────────────────────────────────────────── */}
       <section
