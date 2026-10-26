@@ -232,36 +232,61 @@ export default function Home() {
         <div className={`${SECTION} py-20 sm:py-24 lg:py-32`}>
           <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
             <div className="space-y-7">
-              <p className="inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/20 bg-[var(--accent)]/10 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-[var(--accent)]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-                Paintless Dent Removal Specialists, NZ
-              </p>
               <div className="space-y-4">
-                <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-                  Paintless Dent Removal in Tauranga and Waikato.{" "}
-                  <span className="text-[var(--accent)]">
-                    No paint. No filler.
+                {/* The service on its own line, then the area and promise
+                    one size down. */}
+                <h1 className="text-balance font-bold tracking-tight">
+                  <span className="block text-[2.25rem] leading-[1.08] sm:text-[2.875rem] lg:text-[3.625rem]">
+                    Paintless Dent Removal
+                  </span>
+                  <span className="mt-3 block text-xl leading-snug sm:text-2xl lg:text-3xl">
+                    Tauranga, Bay of Plenty &amp; Waikato.{" "}
+                    <span className="text-[var(--accent)]">
+                      No paint. No filler.
+                    </span>
                   </span>
                 </h1>
-                <p className="max-w-lg text-balance text-sm sm:text-base text-white/60">
-                  DentLabNZ restores your vehicle&apos;s panels to factory
-                  condition using expert paintless dent removal. Faster, cheaper
-                  and better for your car&apos;s resale value.
-                </p>
-              </div>
-              <div className="flex flex-wrap items-center gap-3 pt-1">
-                <a
-                  href="#contact"
-                  className="inline-flex items-center justify-center rounded-lg bg-[var(--accent)] px-6 py-3 text-xs font-bold uppercase tracking-[0.18em] text-black shadow-lg shadow-[var(--accent)]/20 transition hover:brightness-110"
-                >
-                  Get a free quote
-                </a>
-                <a
-                  href="#services"
-                  className="inline-flex items-center justify-center rounded-lg border border-white/15 bg-white/5 px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-white/80 transition hover:border-white/30 hover:bg-white/10"
-                >
-                  View services
-                </a>
+                {/* Intro, with the price beat seal floated into the second
+                    paragraph so the copy runs above, beside and beneath it.
+                    shape-outside makes the lines follow the badge's curve. */}
+                <div className="flow-root">
+                  <div className="max-w-xl space-y-3 text-pretty text-sm sm:text-base text-white/60">
+                    <p>
+                      We repair car park dents, door dings, hail damage and
+                      other suitable dents without repainting the panel,
+                      helping customers avoid unnecessary panel replacement
+                      and traditional paint repairs where paintless dent
+                      removal is appropriate.
+                    </p>
+                    <p>
+                      <Image
+                        src={priceBeat}
+                        alt="Guaranteed price beat. Show us a written quote from another repairer and we will beat it by 10 percent. Valid written competitor quotes only, terms and conditions apply."
+                        className="float-right ml-4 h-32 w-auto drop-shadow-[0_10px_30px_rgba(240,197,0,0.25)] [shape-margin:0.5rem] [shape-outside:circle(50%)] sm:h-40 lg:h-48 xl:h-52"
+                        priority
+                      />
+                      We offer free, no-obligation quotes and a mobile service
+                      at your home or workplace. Found a cheaper qualifying
+                      written quote? We&apos;ll beat it by 10%, subject to our{" "}
+                      <Link
+                        href="/price-beat-terms"
+                        className="underline underline-offset-4 transition hover:text-white"
+                      >
+                        price-beat terms
+                      </Link>
+                      .
+                    </p>
+                    <p>
+                      <a
+                        href="#contact"
+                        className="underline underline-offset-4 transition hover:text-white"
+                      >
+                        Contact DentLabNZ
+                      </a>{" "}
+                      to send photos of your damage and arrange an assessment.
+                    </p>
+                  </div>
+                </div>
               </div>
 
               {/* Trust bar */}
@@ -373,20 +398,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Price beat seal, straddling the hero's lower edge. The wrapper is
-          zero-height and sits between the two sections, so the seal centres
-          on the dividing line and is clipped by neither. */}
-      <div className="relative z-20 h-0">
-        <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
-          <Image
-            src={priceBeat}
-            alt="Guaranteed price beat. Show us a written quote from another repairer and we will beat it by 10 percent. Valid written competitor quotes only, terms and conditions apply."
-            className="h-32 w-auto drop-shadow-[0_10px_30px_rgba(240,197,0,0.25)] sm:h-40 lg:h-48"
-            priority
-          />
-        </div>
-      </div>
 
       {/* ── Our work (Instagram) ────────────────────────────── */}
       <InstagramFeed
