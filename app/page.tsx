@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { QuoteForm } from "./components/QuoteForm";
 import InstagramFeed from "./components/InstagramFeed";
+import { SiteFooter } from "./components/SiteFooter";
 // Trimmed, transparent build of the brand mark, derived from the supplied
 // JPEG (kept alongside as dentlabnz_logo_dont_use.jpg). The JPEG's solid
 // black field is keyed out to alpha, so the mark can cross the nav divider
@@ -660,23 +661,7 @@ export default function Home() {
       </section>
 
       {/* ── Footer ──────────────────────────────────────────── */}
-      <footer className="bg-[#0a0a0a] py-4">
-        <div
-          className={`${SECTION} flex flex-col items-center justify-between gap-4 sm:flex-row`}
-        >
-          <div className="flex items-center">
-            <Image src={logo} alt="DentLabNZ" className="h-16 w-auto" />
-          </div>
-          <p className="text-xs text-white/30">
-            © {new Date().getFullYear()} DentLabNZ · Paintless Dent Removal
-            Specialists · New Zealand
-          </p>
-          <div className="flex items-center gap-1 text-xs text-white/30">
-            <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-            <span>PDR Specialists · NZ</span>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter sectionClass={SECTION} />
     </main>
   );
 }

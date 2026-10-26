@@ -14,9 +14,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const TITLE = "DentLabNZ | Paintless Dent Removal Specialists in New Zealand";
+const TITLE =
+  "DentLabNZ | Paintless Dent Removal - Tauranga, Bay of Plenty & Waikato";
 const DESCRIPTION =
-  "DentLabNZ are New Zealand's paintless dent removal specialists. We fix door dings, hail damage and panel dents without repainting, preserving your factory finish and vehicle value. Fast, affordable, expert PDR across NZ.";
+  "DentLabNZ provides professional mobile paintless dent removal (PDR) for cars, utes and other vehicles, as well as suitable garage door dent repairs. Based in the Bay of Plenty, we service Tauranga, Mount Maunganui, Papamoa, Te Puke, Rotorua, Hamilton and surrounding areas across the Bay of Plenty and Waikato. Found a cheaper qualifying written quote? We'll beat it by 10%, subject to our price-beat terms.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
